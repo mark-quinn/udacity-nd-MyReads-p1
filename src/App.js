@@ -23,6 +23,14 @@ class BooksApp extends React.Component {
     );
   }
 
+  handleBookUpdate = (book, shelf) => {
+    const currentBooks = this.state.books.filter(a => a.id !== book.id);
+    book.shelf = shelf;
+    this.setState({
+      books: [...currentBooks, book ]
+    })
+  }
+
   render() {
     return (
       <div className="app">
@@ -58,7 +66,7 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <Bookshelf books={this.state.books}/>
+                <Bookshelf books={this.state.books} onBookUpdate={this.handleBookUpdate} />
               </div>
             </div>
             <div className="open-search">

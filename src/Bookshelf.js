@@ -3,7 +3,7 @@ import Book from "./Book";
 
 class Bookshelf extends Component {
   render() {
-    const { books } = this.props;
+    const { books, onBookUpdate } = this.props;
     const currentlyReading = [];
     const read = [];
     const wantToRead = [];
@@ -29,7 +29,7 @@ class Bookshelf extends Component {
               <ol className="books-grid">
                 {currentlyReading.map((book) => (
                   <li key={book.id}>
-                    <Book book={book} />
+                    <Book book={book} onUpdateBook={onBookUpdate} />
                   </li>
                 ))}
               </ol>
@@ -43,7 +43,7 @@ class Bookshelf extends Component {
               <ol className="books-grid">
                 {read.map((book) => (
                   <li key={book.id}>
-                    <Book book={book} />
+                    <Book book={book} onUpdateBook={onBookUpdate} />
                   </li>
                 ))}
               </ol>
@@ -57,7 +57,7 @@ class Bookshelf extends Component {
               <ol className="books-grid">
                 {wantToRead.map((book) => (
                   <li key={book.id}>
-                    <Book book={book} />
+                    <Book book={book} onUpdateBook={onBookUpdate} />
                   </li>
                 ))}
               </ol>
