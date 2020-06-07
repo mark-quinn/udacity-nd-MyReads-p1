@@ -6,10 +6,11 @@ import Book from "./Book";
 class SearchBooks extends Component {
   state = {
     query: "",
-    results: "",
+    results: [],
   };
 
   handleSearch = (event) => {
+    event.preventDefault();
     this.setState(
       {
         query: event.target.value,
@@ -19,7 +20,14 @@ class SearchBooks extends Component {
   };
 
   fetchBooks = () => {
+    if (!this.state.query) {
+      this.setState({
+        results: []
+      })
+      return;
+    }
     BooksAPI.search(this.state.query).then((books) => {
+      if (books && books.error) books = [];
       this.setState({
         results: books,
       });
