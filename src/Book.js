@@ -1,4 +1,5 @@
 import React from "react";
+import ShelfChanger from './ShelfChanger';
 
 const Book = (props) => {
   const { book, onUpdateBook } = props;
@@ -13,17 +14,7 @@ const Book = (props) => {
             backgroundImage: `url("${book.imageLinks && book.imageLinks.thumbnail}")`,
           }}
         />
-        <div className="book-shelf-changer">
-          <select value={book.shelf} onChange={(e) => onUpdateBook(book, e.target.value)}>
-            <option value="move" disabled>
-              Move to...
-            </option>
-            <option value="currentlyReading">Currently Reading</option>
-            <option value="wantToRead">Want to Read</option>
-            <option value="read">Read</option>
-            <option value="none">None</option>
-          </select>
-        </div>
+        <ShelfChanger book={book} updateBook={onUpdateBook} />
       </div>
       <div className="book-title">{book.title}</div>
       <div className="book-authors">{book.authors}</div>
