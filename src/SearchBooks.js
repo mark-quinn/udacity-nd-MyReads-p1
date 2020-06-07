@@ -22,12 +22,21 @@ class SearchBooks extends Component {
   fetchBooks = () => {
     if (!this.state.query) {
       this.setState({
-        results: []
-      })
+        results: [],
+      });
       return;
     }
     BooksAPI.search(this.state.query).then((books) => {
       if (books && books.error) books = [];
+      if (books) {
+        Object.values(books).forEach((book) => {
+          Object.values(this.props.books).forEach((currentBook) => {
+            if (book.id === currentBook.id) {
+              books[books.indexOf(book)] = currentBook;
+            }
+          });
+        });
+      }
       this.setState({
         results: books,
       });
