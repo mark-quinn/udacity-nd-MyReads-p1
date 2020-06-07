@@ -21,9 +21,11 @@ class BooksApp extends React.Component {
   handleBookUpdate = (book, shelf) => {
     const currentBooks = this.state.books.filter((a) => a.id !== book.id);
     book.shelf = shelf;
-    this.setState({
-      books: [...currentBooks, book],
-    });
+    BooksAPI.update(book, shelf).then(() =>
+      this.setState({
+        books: [...currentBooks, book],
+      })
+    );
   };
 
   render() {
@@ -46,9 +48,7 @@ class BooksApp extends React.Component {
                 </div>
               </div>
               <div className="open-search">
-                <Link to="/create">
-                  Add a book
-                </Link>
+                <Link to="/create">Add a book</Link>
               </div>
             </div>
           )}
