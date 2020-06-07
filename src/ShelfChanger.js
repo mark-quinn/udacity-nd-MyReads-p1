@@ -7,7 +7,7 @@ class ShelfChanger extends Component {
     return (
       <div className="book-shelf-changer">
         <select
-          value={book.shelf}
+          value={book.shelf || "none"}
           onChange={(e) => updateBook(book, e.target.value)}
         >
           <option value="move" disabled>
